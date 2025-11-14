@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade-XII Literature</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Grade-XII Literature</h1>
+                <p class="subtitle">Digital Book Collection</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <h2 class="nav-category">Essays</h2>
+                    <ul class="nav-list">
+                        <li><a href="#" data-category="essays" data-file="Essays/Human Rights and the Age of Inequality.pdf">Human Rights and the Age of Inequality</a></li>
+                        <li><a href="#" data-category="essays" data-file="Essays/Humility.pdf">Humility</a></li>
+                        <li><a href="#" data-category="essays" data-file="Essays/Knowledge and Wisdom.pdf">Knowledge and Wisdom</a></li>
+                        <li><a href="#" data-category="essays" data-file="Essays/Marriage as a Social Institution.pdf">Marriage as a Social Institution</a></li>
+                        <li><a href="#" data-category="essays" data-file="Essays/On Libraries.pdf">On Libraries</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h2 class="nav-category">One-Act Plays</h2>
+                    <ul class="nav-list">
+                        <li><a href="#" data-category="plays" data-file="One-Act Plays/A Matter of Husbands.pdf">A Matter of Husbands</a></li>
+                        <li><a href="#" data-category="plays" data-file="One-Act Plays/Facing Death.pdf">Facing Death</a></li>
+                        <li><a href="#" data-category="plays" data-file="One-Act Plays/The Bull.pdf">The Bull</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h2 class="nav-category">Poems</h2>
+                    <ul class="nav-list">
+                        <li><a href="#" data-category="poems" data-file="Poems/A Day.pdf">A Day</a></li>
+                        <li><a href="#" data-category="poems" data-file="Poems/Every Morning I Wake.pdf">Every Morning I Wake</a></li>
+                        <li><a href="#" data-category="poems" data-file="Poems/I Was My Own Route.pdf">I Was My Own Route</a></li>
+                        <li><a href="#" data-category="poems" data-file="Poems/Soft Storm.pdf">Soft Storm</a></li>
+                        <li><a href="#" data-category="poems" data-file="Poems/The Awakening Age.pdf">The Awakening Age</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h2 class="nav-category">Short Stories</h2>
+                    <ul class="nav-list">
+                        <li><a href="#" data-category="stories" data-file="Short -Stories/A Devoted Son.pdf">A Devoted Son</a></li>
+                        <li><a href="#" data-category="stories" data-file="Short -Stories/A Respectable Woman.pdf">A Respectable Woman</a></li>
+                        <li><a href="#" data-category="stories" data-file="Short -Stories/A Very Old Man with Enormous Wings.pdf">A Very Old Man with Enormous Wings</a></li>
+                        <li><a href="#" data-category="stories" data-file="Short -Stories/My Old Home.pdf">My Old Home</a></li>
+                        <li><a href="#" data-category="stories" data-file="Short -Stories/Neighbours.pdf">Neighbours</a></li>
+                        <li><a href="#" data-category="stories" data-file="Short -Stories/The Half-closed Eyes of the Buddha and the Slowly Sinking Sun.pdf">The Half-closed Eyes of the Buddha and the Slowly Sinking Sun</a></li>
+                        <li><a href="#" data-category="stories" data-file="Short -Stories/The Treasure in the Forest.pdf">The Treasure in the Forest</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-header">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h2 id="currentTitle">Select a book to start reading</h2>
+            </div>
+            
+            <div class="pdf-viewer-container">
+                <div class="welcome-screen" id="welcomeScreen">
+                    <div class="welcome-content">
+                        <div class="book-icon">📚</div>
+                        <h2>Welcome to Grade-XII Literature</h2>
+                        <p>Select a book from the sidebar to begin reading</p>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-number">5</span>
+                                <span class="stat-label">Essays</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">One-Act Plays</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">5</span>
+                                <span class="stat-label">Poems</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">7</span>
+                                <span class="stat-label">Short Stories</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <iframe id="pdfViewer" class="pdf-viewer" style="display: none;"></iframe>
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Loading book...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
