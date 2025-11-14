@@ -47,6 +47,8 @@ body {
     z-index: 1000;
     transition: transform 0.3s ease;
     box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-header {
@@ -70,6 +72,8 @@ body {
 
 .nav-menu {
     padding: 1.5rem 0;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .nav-section {
@@ -77,14 +81,14 @@ body {
 }
 
 .nav-category {
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-size: 1.125rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-light);
     padding: 0.75rem 1.5rem;
     margin-bottom: 0.5rem;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .nav-list {
@@ -118,6 +122,22 @@ body {
     font-weight: 500;
 }
 
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    margin-top: auto;
+}
+
+.sidebar-footer p {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    text-align: center;
+    margin: 0;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
 /* Main Content */
 .main-content {
     flex: 1;
@@ -138,6 +158,37 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+.back-to-home-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.back-to-home-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.back-to-home-btn:active {
+    transform: translateY(0);
+}
+
+.back-icon {
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
 .menu-toggle {
@@ -164,6 +215,36 @@ body {
     flex: 1;
 }
 
+.animated-title {
+    background: linear-gradient(
+        90deg,
+        #667eea 0%,
+        #764ba2 20%,
+        #f093fb 40%,
+        #f5576c 60%,
+        #4facfe 80%,
+        #00f2fe 100%
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: colorShift 4s ease infinite;
+    font-weight: 700;
+}
+
+@keyframes colorShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 /* PDF Viewer Container */
 .pdf-viewer-container {
     flex: 1;
@@ -172,11 +253,39 @@ body {
     overflow: hidden;
 }
 
+.welcome-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #6366f1, #8b5cf6, #a855f7, #3b82f6, #1e3a8a);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    opacity: 0.95;
+    z-index: 0;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .pdf-viewer {
     width: 100%;
     height: 100%;
     border: none;
     display: block;
+    position: relative;
+    z-index: 1;
 }
 
 /* Welcome Screen */
@@ -186,17 +295,31 @@ body {
     justify-content: center;
     height: 100%;
     padding: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .welcome-content {
     text-align: center;
     max-width: 600px;
+    position: relative;
+    z-index: 2;
 }
 
 .book-icon {
-    font-size: 5rem;
     margin-bottom: 1.5rem;
     animation: float 3s ease-in-out infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-image {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
 @keyframes float {
@@ -229,11 +352,79 @@ body {
 }
 
 .stat-item {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
     padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    font-family: inherit;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* Reset button defaults */
+    margin: 0;
+    outline: none;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: 200% 200%;
+    animation: statGradient 3s ease infinite;
+    opacity: 0.6;
+    z-index: 0;
+    border-radius: 16px;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.stat-item:active {
+    transform: translateY(-2px);
+}
+
+.stat-item * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Animated gradient backgrounds for each button */
+.stat-essays::before {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+.stat-plays::before {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+}
+
+.stat-poems::before {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%);
+}
+
+.stat-stories::before {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 50%, #30cfd0 100%);
+}
+
+@keyframes statGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .stat-number {
@@ -242,14 +433,17 @@ body {
     font-weight: 700;
     color: white;
     margin-bottom: 0.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .stat-label {
     display: block;
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: white;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Loading Spinner */
@@ -307,6 +501,15 @@ body {
 
     .content-header h2 {
         font-size: 1.25rem;
+    }
+
+    .back-to-home-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .back-to-home-btn span:not(.back-icon) {
+        display: none;
     }
 
     .sidebar-header {

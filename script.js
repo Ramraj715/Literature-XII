@@ -6,6 +6,7 @@ const loading = document.getElementById('loading');
 const currentTitle = document.getElementById('currentTitle');
 const menuToggle = document.getElementById('menuToggle');
 const sidebar = document.querySelector('.sidebar');
+const backToHomeBtn = document.getElementById('backToHome');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -50,6 +51,22 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.remove('open');
         }
     });
+
+    // Back to Home button functionality
+    if (backToHomeBtn) {
+        backToHomeBtn.addEventListener('click', () => {
+            goToHome();
+        });
+    }
+
+    // Stat button functionality - scroll to category in sidebar
+    const statButtons = document.querySelectorAll('.stat-item');
+    statButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            scrollToCategory(category);
+        });
+    });
 });
 
 // Function to load PDF
@@ -61,6 +78,12 @@ function loadPDF(filePath, title) {
     
     // Update title
     currentTitle.textContent = title;
+    currentTitle.classList.remove('animated-title');
+    
+    // Show Back to Home button
+    if (backToHomeBtn) {
+        backToHomeBtn.style.display = 'flex';
+    }
     
     // Create a new iframe to load the PDF
     // Use a small delay to show loading animation
@@ -91,6 +114,28 @@ function loadPDF(filePath, title) {
             }
         }, 2000);
     }, 300);
+}
+
+// Function to go back to home
+function goToHome() {
+    // Hide PDF viewer
+    pdfViewer.style.display = 'none';
+    pdfViewer.src = '';
+    
+    // Show welcome screen
+    welcomeScreen.style.display = 'flex';
+    
+    // Hide Back to Home button
+    if (backToHomeBtn) {
+        backToHomeBtn.style.display = 'none';
+    }
+    
+    // Reset title
+    currentTitle.textContent = 'Select A Genre to Start Reading';
+    currentTitle.classList.add('animated-title');
+    
+    // Remove active state from all nav links
+    navLinks.forEach(link => link.classList.remove('active'));
 }
 
 // Function to show error message
@@ -135,6 +180,58 @@ document.addEventListener('keydown', (e) => {
         sidebar.classList.remove('open');
     }
 });
+
+// Function to scroll to category in sidebar
+function scrollToCategory(category) {
+    // Map category names to section headings (matching the actual HTML text)
+    const categoryMap = {
+        'essays': 'Essays',
+        'plays': 'One-Act Plays',
+        'poems': 'Poems',
+        'stories': 'Short Stories'
+    };
+
+    const categoryName = categoryMap[category];
+    if (!categoryName) return;
+
+    // Find the category heading in the sidebar
+    const categoryHeadings = document.querySelectorAll('.nav-category');
+    let targetHeading = null;
+
+    categoryHeadings.forEach(heading => {
+        // Compare the actual text content (not the displayed uppercase version)
+        if (heading.textContent.trim() === categoryName) {
+            targetHeading = heading;
+        }
+    });
+
+    if (targetHeading) {
+        // Open sidebar on mobile if closed
+        if (window.innerWidth <= 768) {
+            sidebar.classList.add('open');
+        }
+
+        // Scroll to the category section
+        setTimeout(() => {
+            targetHeading.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest'
+            });
+
+            // Highlight the category section briefly
+            const navSection = targetHeading.closest('.nav-section');
+            if (navSection) {
+                navSection.style.transition = 'background-color 0.3s ease';
+                navSection.style.backgroundColor = 'rgba(37, 99, 235, 0.2)';
+                
+                setTimeout(() => {
+                    navSection.style.backgroundColor = '';
+                }, 2000);
+            }
+        }, 100);
+    }
+}
 
 // Smooth scroll for navigation
 document.querySelectorAll('.nav-list a').forEach(link => {

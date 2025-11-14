@@ -60,6 +60,10 @@
                     </ul>
                 </div>
             </nav>
+            
+            <div class="sidebar-footer">
+                <p>Created and Designed By Mr. Ramraj Rajbanshi</p>
+            </div>
         </aside>
 
         <!-- Main Content Area -->
@@ -70,32 +74,38 @@
                     <span></span>
                     <span></span>
                 </button>
-                <h2 id="currentTitle">Select a book to start reading</h2>
+                <h2 id="currentTitle" class="animated-title">Select A Genre to Start Reading</h2>
+                <button class="back-to-home-btn" id="backToHome" style="display: none;" aria-label="Back to home">
+                    <span class="back-icon">←</span>
+                    <span>Back to Home</span>
+                </button>
             </div>
             
             <div class="pdf-viewer-container">
                 <div class="welcome-screen" id="welcomeScreen">
                     <div class="welcome-content">
-                        <div class="book-icon">📚</div>
+                        <div class="book-icon">
+                            <img src="Grade-XII.png" alt="Grade-XII Literature" class="welcome-image">
+                        </div>
                         <h2>Welcome to Grade-XII Literature</h2>
                         <p>Select a book from the sidebar to begin reading</p>
                         <div class="stats">
-                            <div class="stat-item">
+                            <button class="stat-item stat-essays" data-category="essays">
                                 <span class="stat-number">5</span>
                                 <span class="stat-label">Essays</span>
-                            </div>
-                            <div class="stat-item">
+                            </button>
+                            <button class="stat-item stat-plays" data-category="plays">
                                 <span class="stat-number">3</span>
                                 <span class="stat-label">One-Act Plays</span>
-                            </div>
-                            <div class="stat-item">
+                            </button>
+                            <button class="stat-item stat-poems" data-category="poems">
                                 <span class="stat-number">5</span>
                                 <span class="stat-label">Poems</span>
-                            </div>
-                            <div class="stat-item">
+                            </button>
+                            <button class="stat-item stat-stories" data-category="stories">
                                 <span class="stat-number">7</span>
                                 <span class="stat-label">Short Stories</span>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
